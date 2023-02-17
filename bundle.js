@@ -1,0 +1,2 @@
+// deno-lint-ignore-file
+var d=Object.defineProperty;var n=(t,e)=>d(t,"name",{value:e,configurable:!0});var l=document.getElementById("folder"),c=document.getElementById("tool"),m=document.getElementById("output"),s=document.getElementById("launchbtn");document.addEventListener("DOMContentLoaded",t=>{if(a()){window.moveTo(1,1);let e=500,o=325;window.resizeTo(e,o)}});s.addEventListener("click",()=>{let t=l.value,e=c.value;m.value=`${e} ${t}`});var a=n(()=>!matchMedia("(display-mode: browser)").matches,"isDesktop");

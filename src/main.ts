@@ -1,7 +1,10 @@
-const folder = document.getElementById('folder');
-const tool = document.getElementById('tool');
-const output = document.getElementById('output');
-const launch = document.getElementById('launchbtn');
+/// <reference lib="dom" />
+
+
+const folder = document.getElementById('folder') as HTMLInputElement;
+const tool = document.getElementById('tool') as HTMLSelectElement;
+const output = document.getElementById('output') as HTMLOutputElement;
+const launch = document.getElementById('launchbtn') as HTMLButtonElement;
 
 document.addEventListener("DOMContentLoaded", event => {
    // we can move only if we are not in a browser's tab
