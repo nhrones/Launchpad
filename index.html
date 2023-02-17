@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width,initial-scale=1" />
+   <link rel="manifest" href="/manifest.json">
+   <link rel="stylesheet" href="./styles.css">
+   <link rel="shortcut icon" type="image/x-icon" href="data:image/x-icon;,">
+   <title>Launchpad</title>
+</head>
+
+<body>
+   <div id="launch">
+     
+      <label for="folder">Launch Folder</label>
+      <input type="text" id="folder" name="folder" value="dist" />
+   
+      <label for="tool">from</label>
+      <select id="tool" name="tool">
+         <option value="serve" selected>Simple Serve</option>
+         <option value="hot">Hot Serve</option>
+         <option value="log">Log</option>
+      </select>
+      <output name="output" id="output">?</output>
+      <button id="launchbtn">Launch</button>
+   </div>
+   <script src="./app.js"></script>
+</body>
+<script>
+   if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' });
+   }
+</script>
+
+</html>

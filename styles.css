@@ -1,0 +1,44 @@
+html {
+   background: rgb(243, 243, 243);
+   font-family: 'Segoe UI', Roboto, sans-serif;
+   font-size: 12pt;
+ }
+ 
+ html, body {
+   height: 100%;
+   margin: 0;
+ }
+ 
+ body {
+   display: grid;
+   place-items: center;
+ }
+ 
+ #launch {
+   width: 10rem;
+   padding: 2rem;
+   border-radius: .5rem;
+   box-shadow: 0 0 2rem 0 #0001;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+ 
+ #launch input, #launch select {
+   font-family: inherit;
+   font-size: inherit;
+   margin-block-end: 1rem;
+   text-align: center;
+   width: 10rem;
+ }
+ 
+ #launchbtn {
+   margin-top: 1rem;
+   font-family: inherit;
+   font-size: inherit;
+   width: 10rem;
+ }
+ 
+ #launch #output {
+   font-size: 1rem;
+ }
