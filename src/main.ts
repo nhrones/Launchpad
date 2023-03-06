@@ -1,26 +1,66 @@
 /// <reference lib="dom" />
 
+import {
+   destination,
+   init,
+   launchButton,
+   output,
+   port,
+   source,
+   tool,
+} from './dom.ts'
 
-const folder = document.getElementById('folder') as HTMLInputElement;
-const tool = document.getElementById('tool') as HTMLSelectElement;
-const output = document.getElementById('output') as HTMLOutputElement;
-const launch = document.getElementById('launchbtn') as HTMLButtonElement;
+if ('serviceWorker' in navigator) {
+   //navigator.serviceWorker.register('/sw.js', { scope: '/' });
+}
 
-document.addEventListener("DOMContentLoaded", event => {
-   // we can move only if we are not in a browser's tab
-   if (isDesktop()) {
-      window.moveTo(1, 1);
-      let width = 500;
-      let height = 325;
-      window.resizeTo(width, height);
+let portNum = 80 // default = 90
+
+init()
+
+launchButton.addEventListener('click', () => {
+   const sourceFolder = source.value;
+   console.log('sourceFolder ', sourceFolder)
+   const destFolder = destination.value;
+   const toolName = tool.value;
+   portNum = parseInt(port.value)
+   
+   let parms: any = {}
+   
+   switch (toolName) {
+      case "serve":
+         output.value = `Serving /${destFolder}/index.html`;
+         parms = {folder: destFolder, port: portNum };
+         break;
+         
+      case "hot":
+         output.value = `Hot-Serve /${destFolder}/index.html`;
+         parms = {srcfolder: sourceFolder, destination: destFolder, port: portNum };
+         break;
+
+      case "build":
+         output.value = `Building /${sourceFolder}/main.ts to /${destFolder}/bundle.js`;
+         parms = {destination: destFolder, minify: "--nomin" };
+         break;
+
+      case "log":
+         output.value = `Logger started on port:${portNum} `;
+         parms = {port: portNum};
+         break;
+
+      default:
+         output.value = "What?"
+         break;
    }
+   
+   fetch("", {
+      method: "POST",
+      body: JSON.stringify(
+          {
+              msgID: 99,
+              toolName: toolName,
+              params: parms,
+          }
+      ),
+  });
 });
-
-launch.addEventListener('click', () => {
-  const folderName = folder.value;
-  const toolName = tool.value;
-
-  output.value = `${toolName} ${folderName}`;
-});
-
-const isDesktop = () =>  !(matchMedia("(display-mode: browser)").matches);

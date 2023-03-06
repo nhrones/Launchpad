@@ -13,13 +13,32 @@
 <body>
    <div id="launch">
      
-      <label for="folder">Launch Folder</label>
-      <input type="text" id="folder" name="folder" value="dist" />
-   
-      <label for="tool">using</label>
+      <label for="srcfolder">Source Folder</label>
+      <input type="text" id="srcfolder" name="srcfolder " list="List" value="src">
+      <datalist id="List">
+        <option value="root">  
+        <option value="dist">
+        <option value="public">
+        <option value="out">
+        <option value="lib">
+      </datalist>
+      <label for="destfolder">Destination Folder</label>
+      <input type="text" id="destfolder" name="destfolder " list="List" value="dist">
+      <datalist id="List">
+        <option value="/">/root/</option>  
+        <option value="/dist">/dist/</option>
+        <option value="/public">/public/</option>
+        <option value="/out">/out/</option>
+        <option value="/lib">/lib/</option>
+      </datalist>
+      <label for="port">Port</label>
+      <input type="number" id="port" name="port " list="List" value=9000>
+
+      <label for="tool">Tool</label>
       <select id="tool" name="tool">
          <option value="serve" selected>Simple Serve</option>
          <option value="hot">Hot Serve</option>
+         <option value="build">esbuild /src/main.ts</option>
          <option value="log">Log</option>
       </select>
       <output name="output" id="output">?</output>
@@ -27,10 +46,4 @@
    </div>
    <script src="./bundle.js"></script>
 </body>
-<script>
-   if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js', { scope: '/' });
-   }
-</script>
-
 </html>
